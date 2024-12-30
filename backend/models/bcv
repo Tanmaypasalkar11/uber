@@ -1,0 +1,20 @@
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzczMWNlODVmNzMwNTdlYjI2YjI3M2QiLCJpYXQiOjE3MzU1OTcyODgsImV4cCI6MTczNTY4MzY4OH0.Yw9vFdjPRF7ad7Y_aWGlZgm2u-BxwB2xH1GUvgyfUSw",
+    "captain": {
+        "fullname": {
+            "firstname": "tessdt_casspst s sains_firstname",
+            "lastname": "csdscs"
+        },
+        "email": "test_dssdemscscscaisssssl@gmail.com",
+        "password": "$2b$10$psBfV3QnUJ46IL8XkxdDwuHXWcuhVH4dBYMDhWxoo9KZAN/jUDAfm",
+        "status": "offline",
+        "vehicle": {
+            "color": "rss dsss ssed",
+            "plate": "MPssdss 04 XY 6204",
+            "capacity": 3,
+            "vehicleType": "car"
+        },
+        "_id": "67731ce85f73057eb26b273d",
+        "__v": 0
+    }
+}

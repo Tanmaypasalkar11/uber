@@ -1,6 +1,6 @@
 const userModel=require('../models/user')
 const userService=require('../services/user.service');
-const {validationResult}=require('express-validator')
+const {validationResult}=require('express-validator');
 const bcrypt = require('bcrypt');
 const blacklistToken=require('../models/blacklistToken.model');
 
@@ -13,7 +13,12 @@ module.exports.registerUser=async(req,res,next)=>{
     }
 
     const {fullName,email,password}=req.body;
-    
+
+    const isUserExist=await userModel.findOne({email});
+    if(isUserExist){
+      return res.status(400).json({message:'User already exist'});
+    }
+
     const hashedPassword=await userModel.hashPassword(password);
 
     const user=await userService.createUser({
