@@ -23,7 +23,8 @@ const captainSchema=new mongoose.Schema({
   },
   password:{
     type:String,
-    required:true
+    required:true,
+    
   },
   socket_id:{
     type:String

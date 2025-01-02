@@ -167,18 +167,122 @@ fullname (object): firstname (string, required): Captain's first name (minimum 3
 - **Method:** `POST`
 - **Description:** Register a new captain.
 - **Request Body:**
-  - `fullname` (object): Captain's full name.
-    - `firstname` (string): Captain's first name.
-    - `lastname` (string): Captain's last name.
-  - `email` (string): Captain's email.
-  - `password` (string): Captain's password.
-  - `vehicle` (object): Captain's vehicle information.
-    - `color` (string): Vehicle color.
-    - `plate` (string): Vehicle plate number.
-    - `capacity` (number): Vehicle capacity.
-    - `vehicleType` (string): Type of vehicle (bike, car, auto).
+  ```json
+  {
+    "fullname": {
+      "firstname": "John", // string, required, minimum 3 characters
+      "lastname": "Doe" // string, optional, minimum 3 characters
+    },
+    "email": "john.doe@example.com", // string, required, must be a valid email
+    "password": "password123", // string, required, minimum 8 characters
+    "vehicle": {
+      "color": "Red", // string, required, minimum 3 characters
+      "plate": "XYZ123", // string, required, minimum 3 characters
+      "capacity": 4, // number, required, minimum 1
+      "vehicleType": "car" // string, required, must be 'bike', 'car', or 'auto'
+    }
+  }
+  ```
 - **Response:**
-  - `token` (string): Authentication token.
-  - `captain` (object): Captain's information.
+  ```json
+  {
+    "token": "jwt_token_here", // string, JWT token
+    "captain": {
+      "_id": "60d0fe4f5311236168a109ca",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "Red",
+        "plate": "XYZ123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+  ```
 - **Error Response:**
   - `400 Bad Request`: Validation errors or captain already exists.
+
+### Login Captain
+
+- **URL:** `/captains/login`
+- **Method:** `POST`
+- **Description:** Login a captain.
+- **Request Body:**
+  ```json
+  {
+    "email": "john.doe@example.com", // string, required, must be a valid email
+    "password": "password123" // string, required, minimum 8 characters
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "token": "jwt_token_here", // string, JWT token
+    "captain": {
+      "_id": "60d0fe4f5311236168a109ca",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "Red",
+        "plate": "XYZ123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+  ```
+- **Error Response:**
+  - `400 Bad Request`: Validation errors.
+  - `401 Unauthorized`: Invalid email or password.
+
+### Get Captain Profile
+
+- **URL:** `/captains/profile`
+- **Method:** `GET`
+- **Description:** Get the authenticated captain's profile.
+- **Headers:**
+  - `Authorization` (string): Bearer token.
+- **Response:**
+  ```json
+  {
+    "captain": {
+      "_id": "60d0fe4f5311236168a109ca",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "Red",
+        "plate": "XYZ123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+  ```
+- **Error Response:**
+  - `401 Unauthorized`: Only authenticated captains can access the data.
+
+### Logout Captain
+
+- **URL:** `/captains/logout`
+- **Method:** `POST`
+- **Description:** Logout the authenticated captain.
+- **Headers:**
+  - `Authorization` (string): Bearer token.
+- **Response:**
+  ```json
+  {
+    "message": "Logout successful"
+  }
+  ```
+- **Error Response:**
+  - `500 Internal Server Error`: The server encountered an unexpected condition.
